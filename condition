@@ -1,0 +1,149 @@
+#include <stdio.h>
+#include <time.h>
+
+int main_condition(void) {
+	// 버스를 탄다고 가정했을 때
+
+	/*int age = 25;
+	if (age >= 20) {
+		printf("일반인입니다.\n");
+	}
+	else {
+		printf("학생입니다.\n");
+	}*/
+
+	// 초등학생(8~13)/중학생(14~16)/고등학생(17~19)으로 나누기
+	/*int age = 21;
+	if (age >= 8 && age <= 13) {
+		printf("초등학생입니다.\n");
+	}
+	else if (age >= 14 && age <= 16) {
+		printf("중학생입니다.\n");
+	}
+	else if (age >= 17 && age <= 19) {
+		printf("고등학생입니다.\n");
+	}
+	else {
+		printf("일반인입니다.\n");
+	}*/
+
+	// break / continue
+	// 1번~30번까지 있는 반에서 1번~5번이 발표할 때
+
+	/*for (int i = 1; i <= 30; i++) {
+		if (i >= 6) {
+			printf("나머지 학생은 발표 대상이 아닙니다.");
+			break;
+		}
+		printf("%d번 학생은 발표를 준비하세요.\n", i);
+	}*/
+
+	// 1번~30번까지 있는 반에서 7번 학생은 결석.
+	// 7번을 제외하고 6번부터 10번까지 발표.
+
+	/*for (int i = 1; i <= 30; i++) {
+		if (i >= 6 && i <= 10) {
+			if (i == 7) {
+				printf("7번 학생은 결석입니다.\n");
+				continue;
+			}
+			printf("%d번 학생은 발표를 준비하세요.\n", i);
+		}
+	}*/
+
+	// &&, ||
+
+	/*int a = 11;
+	int b = 10;
+	int c = 13;
+	int d = 13;
+
+	if (a == b || c == d) {
+		printf("a와 b 혹은 c와 d가 서로 같습니다.\n");
+	}
+	else {
+		printf("a와 b 혹은 c와 d가 서로 같지 않습니다.\n");
+	}*/
+
+	// 가위(0) 바위(1) 보(2)
+
+	/*srand(time(NULL)); // 임의의 숫자 지정
+	int i = rand() % 3; // 0~2 반환
+	if (i == 0) {
+		printf("가위\n");
+	}
+	else if (i == 1) {
+		printf("바위\n");
+	}
+	else if (i == 2) {
+		printf("보\n");
+	}
+	else {
+		printf("조건이 지정되지 않은 값입니다.\n");
+	}*/
+
+	/*srand(time(NULL)); // 임의의 숫자 지정
+	int i = rand() % 3; // 0~2 반환
+	switch (i) {	// switch(변수)
+	case 0: printf("가위\n"); break;	// i(변수) == 0일때 가위 출력
+	case 1: printf("바위\n"); break;	// break가 없다면 이후의 case들은 break가 있는 곳까지 출력.
+	case 2: printf("보\n"); break;		// i == 1일 때 break가 없으면 case 1~default까지 모두 출력됨.
+	default: printf("조건이 지정되지 않은 값입니다.\n"); // 지정한 case 외의 값이 올 경우 == else
+	}*/
+
+	/*int age = 15;
+	switch (age) {
+	case 8:
+	case 9:
+	case 10:
+	case 11:
+	case 12:
+	case 13: printf("초등학생입니다.\n"); break; // age = 8~13일 경우 빈칸 수행 후 13세 때 출력 후 break.
+	case 14:
+	case 15:
+	case 16: printf("중학생입니다.\n"); break;
+	case 17:
+	case 18:
+	case 19: printf("고등학생입니다.\n"); break;
+	default: printf("학생이 아닙니다.\n"); break;
+	}*/
+
+	// up and down 게임
+
+	srand(time(NULL));
+	int num = rand() % 100 + 1; // num == 1 ~ 100까지의 숫자, x % 100: x의 뒤의 두자리 숫자 반환. ex) 3524 % 100 = 24
+	int answer;
+	int chance = 5;
+
+	printf("기회는 5번입니다.\n");
+	printf("숫자를 맞혀보세요(1~100).\n");
+
+	while (1) { // while(1): 무한루프
+		scanf_s("%d", &answer);
+
+		if (answer > num && answer <= 100) {
+			printf("down.\n");
+			chance--;
+		}
+		else if (answer > 100) {
+			printf("1~100 사이의 값이 아닙니다.\n");
+		}
+		else if (answer < num) {
+			printf("up.\n");
+			chance--;
+		}
+		else if (answer == num) {
+			printf("맞추셨습니다. 정답은 %d입니다.\n", answer);
+			break;
+		}
+		if (chance > 0) {
+			printf("남은 기회는 %d번입니다.\n", chance);
+		}
+		else if (chance == 0) {
+			printf("기회가 모두 소진되었습니다. 정답은 %d입니다.\n", num);
+			break;
+		}
+	}
+
+	return 0;
+}
