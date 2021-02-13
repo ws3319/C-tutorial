@@ -1,0 +1,48 @@
+#include <stdio.h>
+
+int main_printfscanf(void)
+{
+	/*int one, two, three;
+	printf("3개의 값을 입력하세요:");
+	scanf_s("%d %d %d", &one, &two, &three);
+	printf("입력값은 각각 %d, %d, %d입니다.", one, two, three);*/
+
+	// 문자(한글자), 문자열(여러 글자)
+	/*char c = 'A';
+	printf("%c\n", c);*/
+
+	/*char str[4];
+	scanf_s("%s", str, sizeof(str));
+	printf("%s\n", str);*/
+
+	//프로젝트: 경찰 조서 작성
+	/*char name[256], crime_name[256];
+	const int age;
+	float weight, height;
+
+	printf("이름이 뭐예요?\n");
+		scanf_s("%s", name, sizeof(name));
+
+	printf("나이가 몇살이예요?\n");
+		scanf_s("%d", &age);
+
+	printf("키가 몇이예요?\n");
+		scanf_s("%f", &height);
+
+	printf("몸무게가 몇이예요?\n");
+		scanf_s("%f", &weight);
+
+	printf("범죄명이 뭐예요?\n");
+		scanf_s("%s", crime_name, sizeof(crime_name));
+
+		printf("----조서----\n");
+		printf("이름: %s\n", name);
+		printf("나이: %d\n", age);
+		printf("키: %.1f\n", height);
+		printf("몸무게: %.1f\n", weight);
+		printf("범죄명: %s\n", crime_name);*/
+
+
+
+	return 0;
+}
