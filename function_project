@@ -1,0 +1,101 @@
+#include <stdio.h>
+#include <time.h>
+
+/*int getRandomNumber(int level);
+void question(int level, int num1, int num2);
+void success();
+void fail();*/
+
+int NumberofQuestion = 5;
+int success_count = 0;
+int answer;
+
+int getRandomNumber(int level);
+void question(int level, int num1, int num2);
+void success();
+void fail();
+
+int main_function_project(void) {
+	// 문이 5개가 있고, 각 문마다 점점 어려운 수식 퀴즈가 출제(랜덤)
+	// 맞추면 통과, 틀리면 실패
+
+	srand(time(NULL));
+
+	/*int count = 0;
+
+	for (int i = 1; i <= 5; i++) {
+		// x + y = ?
+		int num1 = getRandomNumber(i);
+		int num2 = getRandomNumber(i);
+		// printf("%d x %d = ?\n", num1, num2);
+		question(i, num1, num2);
+
+		int answer = -1;
+		scanf_s("%d", &answer);
+		if (answer == -1) {
+			printf("프로그램을 종료합니다.\n");
+			exit(0);
+		}
+		else if (answer == num1 * num2) {
+			success(); // 성공
+			count++;
+		}
+		else {
+			fail(); // 실패
+		}
+	}
+	printf("당신은 5개의 비밀번호 중 %d개를 맞췄습니다.\n", count);*/
+
+	for (int i = 1; i <= 5; i++) {
+		int num1 = getRandomNumber(i);
+		int num2 = getRandomNumber(i);
+		question(i, num1, num2);
+		scanf_s("%d", &answer);
+		if (answer == num1 * num2) {
+			success();
+		}
+		else if (answer == -1) {
+			printf("프로그램을 종료합니다.\n");
+			exit(0);
+		}
+		else {
+			fail();
+		}
+	}
+	printf("\n\n%d개의 문제 중 %d개를 맞추셨습니다. 게임을 종료합니다.\n", NumberofQuestion, success_count);
+	return 0;
+}
+
+/*int getRandomNumber(int level) {
+	return rand() % (level * 6) + 1;
+}
+void question(int level, int num1, int num2) {
+	printf("\n\n\n--------- %d번째 비밀번호 ---------\n", level);
+	printf("\n\t%d x %d = ?\n\n", num1, num2); // \t: tab
+	printf("\n---------------------------\n");
+	printf("\n비밀번호를 입력하세요.(닫기: -1 입력) >> ");
+}
+void success() {
+	printf("\n정답입니다!\n");
+}
+void fail() {
+	printf("\n틀렸습니다!\n");
+}*/
+
+int getRandomNumber(int level) {
+	return rand() % (level * 7) + 1;
+}
+void question(int level, int num1, int num2) {
+	printf("\n--------------%d번째 문제--------------\n", level);
+	printf("\n\t%d x %d = ?\n", num1, num2);
+	printf("\n정답(종료: -1 입력) => ");
+}
+void success() {
+	printf("맞췄습니다!\n");
+	success_count++;
+	printf("%d문제 중 %d개를 맞추셨습니다.\n", NumberofQuestion, success_count);
+}
+void fail() {
+	printf("틀렸습니다!\n");
+	printf("%d문제 중 %d개를 맞추셨습니다.\n", NumberofQuestion, success_count);
+}
