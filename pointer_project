@@ -7,14 +7,13 @@
 // 물이 다 증발하기 전에 부지런히 어항에 물을 줘서 물고기를 살리자.
 // 물고기는 시간이 지날수록 커져서 나중에는...냠냠(?)
 
-void initData();
+void initData(); // 데이터 초기화
 void printFishes();
 void evpWater(long elapsedTime);
 
 int level, arrayFish[6];
 int* cursor; // 어항에 물을 주는 역할.
 int cheakFishAlive();
-int FishAlive[6] = { 1, 1, 1, 1, 1, 1 };
 
 int main(void) {
 
@@ -23,25 +22,25 @@ int main(void) {
 	long prevElapsedTime = 0;// 직전 경과 시간(최근에 물을 준 시간 간격)
 	int num; // 몇 번 어항에 물을 줄 것인지, 사용자 입력
 
-	initData();	
+	initData();
 
 	cursor = arrayFish; // cursor[0] ... cursor[1] 등 사용가능. cursor == arrayFish == 물의 높이
 
-	startTime = clock(); // 현재 시간을 millisecond(1000분의 1초)로 반환.
+	startTime = clock(); // clock: 현재 시간을 millisecond(1000분의 1초)로 반환.
 
 	while (1) { // while(1): loop
 		printFishes();
 		printf("몇 번 어항에 물을 주시겠어요 ?\n");
 		scanf_s("%d", &num);
 
-		// 입력값 체크
+		// 잘못된 입력값
 		if (num < 1 || num > 6) {
 			printf("\n입력값이 잘못되었습니다.\n");
 			continue;
 		}
 
 		// 총 경과 시간
-		totalElapsedTime = (clock() - startTime) / CLOCKS_PER_SEC; // 초단위로 바꿔 줌.
+		totalElapsedTime = (clock() - startTime) / CLOCKS_PER_SEC; // time / CLOCKS_PER_SEC: 초단위로 바꿔 줌.
 		printf("총 경과 시간: %ld\n", totalElapsedTime);
 
 		// 마지막으로 물을 준 이후로 흐른 시간
@@ -56,18 +55,21 @@ int main(void) {
 		if (cursor[num - 1] <= 0) {
 			printf("%d번 물고기는 이미 죽었습니다. 물을 주지 않습니다.\n", num);
 		}
-		
+
 		// 2. 어항의 물이 0이 아닌 경우? 물을 준다. 어항의 물의 높이가 100을 넘지 않는지 체크.
 		else if (cursor[num - 1] + 1 <= 100) {
 			// 물을 준다
 			printf("\n\n%d 번 어항에 물을 줍니다.\n", num);
-			cursor[num - 1] += 1; // cursor[num - 1] += == cursor[num - 1] +1
+			cursor[num - 1] += 5; // == cursor[num - 1] +1
+		}
+		if (cursor[num - 1] + 1 > 100) {
+			cursor[num - 1] = 100;
 		}
 
 		// 레벨업을 할 것인지 확인(레벨업은 20초마다 한 번씩 수행)
 		if (totalElapsedTime / 20 > level - 1) { // level = 1부터 시작하므로 level - 1
-			level++; 
-			printf("\n%tLevel UP! %t Lv.%d > Lv.%d\n\n", level - 1, level);
+			level++;
+			printf("\n\tLevel UP! \t 현재 Lv.%d\n\n", level);
 		}
 
 		// 최종 레벨 5
@@ -108,7 +110,10 @@ void printFishes() {
 }
 void evpWater(long elapsedTime) {
 	for (int i = 0; i < 6; i++) {
-		arrayFish[i] -= (level * 3 * (int)elapsedTime); // 3: 난이도 조절을 위한 값
+		arrayFish[i] -= (level * 3 * (int)elapsedTime); // 3: 난이도 조절을 위한 값.
+		// == arrayFish[i] - (level * 3 * (int)elapsedTime)
+		// elapsedTime은 시간(long)이므로 계산에 쓰이기 위해 (int)를 붙여준다.
+
 		if (arrayFish[i] < 0) {
 			arrayFish[i] = 0;
 		}
