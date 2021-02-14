@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int main_printfscanf(void)
+int main(void)
 {
 	/*int one, two, three;
 	printf("3개의 값을 입력하세요:");
