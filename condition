@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <time.h>
 
-int main_condition(void) {
+int main(void) {
 	// 버스를 탄다고 가정했을 때
 
 	/*int age = 25;
