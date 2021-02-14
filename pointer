@@ -5,7 +5,7 @@ void swap_addr(int * a, int * b);
 
 void changeArray(int* ptr);
 
-int main_pointer(void) {
+int main(void) {
 
 	// 포인터
 
