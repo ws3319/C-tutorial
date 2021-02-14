@@ -16,7 +16,7 @@ int div(int num1, int num2);
 //void p(int total);
 
 
-int main_function(void) {
+int main(void) {
 	// function
 	// 계산기
 
