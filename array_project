@@ -2,7 +2,7 @@
 #include <time.h>
 
 
-int main_array_project(void) {
+int main(void) {
 
 	srand(time(NULL));
 	printf("\n\n === 발모제 찾기 게임 ===\n\n");
