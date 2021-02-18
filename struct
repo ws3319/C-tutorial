@@ -19,7 +19,7 @@ typedef struct gameinformation {
 
 } GAME_INFO; // struct gameinformation(해당 구조체)을 GAME_INFO로 치환
 
-int main_struct(void) {
+int main(void) {
 
 	// [게임 출시]
 	// 이름: 갓겜
