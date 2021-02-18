@@ -1,0 +1,118 @@
+#include <stdio.h>
+
+struct gameinfo {
+	char* name;
+	int year;
+	int price;
+	char* company;
+
+	struct gameinfo* friendGame; // 연관업체 게임
+
+};
+typedef struct gameinformation {
+	char* name;
+	int year;
+	int price;
+	char* company;
+
+	struct gameinfo* friendGame; // 연관업체 게임
+
+} GAME_INFO; // struct gameinformation(해당 구조체)을 GAME_INFO로 치환
+
+int main_struct(void) {
+
+	// [게임 출시]
+	// 이름: 갓겜
+	// 발매년도: 2021년
+	// 가격: 2만원
+	// 제조사: 갓회사
+
+	/*char* name
+	int year 
+	int price
+	char* company*/
+
+	// [또 다른 게임 출시]
+	// 이름: 망겜
+	// 발매년도: 2021년
+	// 가격: 3만원
+	// 제조사: 망회사
+
+	char* name2 = "망겜";
+	int year2 = 2021;
+	int price2 = 30000;
+	char* company2 = "망회사";
+
+	// 구조체 사용
+	struct gameinfo gameinfo1;
+	gameinfo1.name = "갓겜";
+	gameinfo1.year = 2021;
+	gameinfo1.price = 20000;
+	gameinfo1.company = "갓회사";
+
+	// 구조체 출력
+	printf("-- 게임 출시 정보 --\n");
+	printf("	게임명	: %s\n", gameinfo1.name);
+	printf("	발매년도 : %d\n", gameinfo1.year);
+	printf("	가격	: %d\n", gameinfo1.price);
+	printf("	제작사	: %s\n", gameinfo1.company);
+
+	// 구조체를 배열처럼 초기화
+	struct gameinfo gameinfo2 = {"망겜", 2021, 30000, "망회사"};
+	printf("-- 또 다른 게임 출시 정보 --\n");
+	printf("	게임명	: %s\n", gameinfo2.name);
+	printf("	발매년도 : %d\n", gameinfo2.year);
+	printf("	가격	: %d\n", gameinfo2.price);
+	printf("	제작사	: %s\n", gameinfo2.company);
+
+	// 구조체 배열
+	struct gameinfo gameArray[2] = {
+	{"갓겜", 2021, 20000, "갓회사"}, 
+	{"망겜", 2021, 30000, "망회사"} };
+
+	// 구조체 포인터
+	struct gameinfo* gamePtr;
+	gamePtr = &gameinfo1; // gamePtr = gameinfo1의 주소값
+	/*printf("\n\n-- 게임 출시 정보 --\n");
+	printf("	게임명	: %s\n", (*gamePtr).name); // *gamePtr.name으로 하게 되면 *(gamePtr.name)의 뜻임
+	printf("	발매년도 : %d\n", (*gamePtr).year); // (*gamePtr).name으로 하게 되면 *이 gamePtr.name이 아닌
+	printf("	가격	: %d\n", (*gamePtr).price); // gamePtr만 수식해주는 것이므로 (*gamePtr).name이 맞음.
+	printf("	제작사	: %s\n", (*gamePtr).company);*/
+
+	// 구조체 포인터를 사용하는 다른 방법
+	/*printf("\n\n-- 게임 출시 정보 --\n");
+	printf("	게임명	: %s\n", gamePtr->name); // 구조체(gameinfo)에 있는 변수(name, year, price, company)에 접근하기 위해
+	printf("	발매년도 : %d\n", gamePtr->year); // 구조체에서는 gameinfo.name을 사용하지만 구조체 포인터는
+	printf("	가격	: %d\n", gamePtr->price); // *(gamePtr).name 또는 gamePtr->name도 사용가능.
+	printf("	제작사	: %s\n", gamePtr->company);*/
+
+	// 연관 업체 게임 소개
+	gameinfo1.friendGame = &gameinfo2; // gameinfo2(망겜)의 주소를 받음.
+	printf("\n\n-- 게임 출시 정보 --\n");
+	printf("	게임명	: %s\n", gameinfo1.friendGame->name); 
+	printf("	발매년도 : %d\n", gameinfo1.friendGame->year);
+	printf("	가격	: %d\n", gameinfo1.friendGame->price);
+	printf("	제작사	: %s\n", gameinfo1.friendGame->company);
+
+	//typedef
+	// 자료형에 별명 지정
+	int i = 1;
+	typedef int 정수;
+	typedef float 실수;
+	정수 정수변수 = 3; // == int i = 3;
+	실수 실수변수 = 3.23f;
+	printf("\n\n정수변수: %d, 실수변수: %.2f\n\n", 정수변수, 실수변수);
+
+	typedef struct gameinfo 게임정보; // gameinfo -> 게임정보
+	게임정보 game1;
+	game1.name = "한글 게임";
+	game1.year = 2021;
+
+	GAME_INFO game2; // == struct (게임명) game2;
+	game2.name = "한글게임2";
+	game2.year = 2021;
+	
+
+
+	return 0;
+}
